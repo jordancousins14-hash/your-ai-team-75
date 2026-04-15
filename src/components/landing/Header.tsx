@@ -14,9 +14,9 @@ export function Header() {
         <a href="#integrations" className="hover:text-amber transition-colors">INTEGRATIONS</a>
         <a href="#pricing" className="hover:text-amber transition-colors">PRICING</a>
       </div>
-      <button className="px-4 py-2 border border-amber text-amber text-xs font-mono hover:bg-amber hover:text-panel transition-all rounded-sm">
+      <Link to="/app/dashboard" className="px-4 py-2 border border-amber text-amber text-xs font-mono hover:bg-amber hover:text-panel transition-all rounded-sm">
         GET STARTED
-      </button>
+      </Link>
     </nav>
   );
 }
