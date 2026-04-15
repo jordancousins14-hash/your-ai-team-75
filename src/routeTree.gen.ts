@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppToolsRouteImport } from './routes/app.tools'
+import { Route as AppKnowledgeRouteImport } from './routes/app.knowledge'
 import { Route as AppHrRouteImport } from './routes/app.hr'
 import { Route as AppForumsRouteImport } from './routes/app.forums'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
@@ -29,6 +31,16 @@ const IndexRoute = IndexRouteImport.update({
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppToolsRoute = AppToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppKnowledgeRoute = AppKnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
   getParentRoute: () => AppRoute,
 } as any)
 const AppHrRoute = AppHrRouteImport.update({
@@ -53,6 +65,8 @@ export interface FileRoutesByFullPath {
   '/app/dashboard': typeof AppDashboardRoute
   '/app/forums': typeof AppForumsRoute
   '/app/hr': typeof AppHrRoute
+  '/app/knowledge': typeof AppKnowledgeRoute
+  '/app/tools': typeof AppToolsRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
@@ -60,6 +74,8 @@ export interface FileRoutesByTo {
   '/app/dashboard': typeof AppDashboardRoute
   '/app/forums': typeof AppForumsRoute
   '/app/hr': typeof AppHrRoute
+  '/app/knowledge': typeof AppKnowledgeRoute
+  '/app/tools': typeof AppToolsRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
@@ -69,6 +85,8 @@ export interface FileRoutesById {
   '/app/dashboard': typeof AppDashboardRoute
   '/app/forums': typeof AppForumsRoute
   '/app/hr': typeof AppHrRoute
+  '/app/knowledge': typeof AppKnowledgeRoute
+  '/app/tools': typeof AppToolsRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
@@ -79,9 +97,18 @@ export interface FileRouteTypes {
     | '/app/dashboard'
     | '/app/forums'
     | '/app/hr'
+    | '/app/knowledge'
+    | '/app/tools'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app/dashboard' | '/app/forums' | '/app/hr' | '/app'
+  to:
+    | '/'
+    | '/app/dashboard'
+    | '/app/forums'
+    | '/app/hr'
+    | '/app/knowledge'
+    | '/app/tools'
+    | '/app'
   id:
     | '__root__'
     | '/'
@@ -89,6 +116,8 @@ export interface FileRouteTypes {
     | '/app/dashboard'
     | '/app/forums'
     | '/app/hr'
+    | '/app/knowledge'
+    | '/app/tools'
     | '/app/'
   fileRoutesById: FileRoutesById
 }
@@ -120,6 +149,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/tools': {
+      id: '/app/tools'
+      path: '/tools'
+      fullPath: '/app/tools'
+      preLoaderRoute: typeof AppToolsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/knowledge': {
+      id: '/app/knowledge'
+      path: '/knowledge'
+      fullPath: '/app/knowledge'
+      preLoaderRoute: typeof AppKnowledgeRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/hr': {
       id: '/app/hr'
       path: '/hr'
@@ -148,6 +191,8 @@ interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppForumsRoute: typeof AppForumsRoute
   AppHrRoute: typeof AppHrRoute
+  AppKnowledgeRoute: typeof AppKnowledgeRoute
+  AppToolsRoute: typeof AppToolsRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
@@ -155,6 +200,8 @@ const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppForumsRoute: AppForumsRoute,
   AppHrRoute: AppHrRoute,
+  AppKnowledgeRoute: AppKnowledgeRoute,
+  AppToolsRoute: AppToolsRoute,
   AppIndexRoute: AppIndexRoute,
 }
 

@@ -3,11 +3,14 @@ import {
   LayoutDashboard,
   Users,
   MessageSquare,
-  ChevronLeft,
-  ChevronRight,
+  Wrench,
+  BookOpen,
+  Menu,
+  X,
   Zap,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Route = createFileRoute("/app")({
   head: () => ({
@@ -20,22 +23,45 @@ const navItems = [
   { to: "/app/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/app/hr", label: "HR Room", icon: Users },
   { to: "/app/forums", label: "Forums", icon: MessageSquare },
+  { to: "/app/tools", label: "Tools", icon: Wrench },
+  { to: "/app/knowledge", label: "Knowledge", icon: BookOpen },
 ] as const;
 
 function AppLayout() {
-  const [collapsed, setCollapsed] = useState(false);
+  const isMobile = useIsMobile();
+  const [expanded, setExpanded] = useState(false);
   const location = useLocation();
+
+  // Auto-collapse on mobile route change
+  useEffect(() => {
+    if (isMobile) setExpanded(false);
+  }, [location.pathname, isMobile]);
+
+  const sidebarWidth = expanded ? "w-60" : "w-14";
 
   return (
     <div className="flex min-h-screen bg-background">
+      {/* Mobile overlay */}
+      {isMobile && expanded && (
+        <div
+          className="fixed inset-0 z-30 bg-black/60"
+          onClick={() => setExpanded(false)}
+        />
+      )}
+
       {/* Sidebar */}
       <aside
-        className={`flex flex-col border-r border-border bg-sidebar transition-all duration-200 ${collapsed ? "w-16" : "w-60"}`}
+        className={`
+          flex flex-col border-r border-border bg-sidebar transition-all duration-200
+          ${sidebarWidth}
+          ${isMobile ? "fixed inset-y-0 left-0 z-40" : "relative"}
+          ${isMobile && !expanded ? "w-0 overflow-hidden border-r-0" : ""}
+        `}
       >
-        {/* Logo */}
+        {/* Logo row */}
         <div className="flex h-14 items-center gap-2 border-b border-border px-4">
           <Zap className="h-5 w-5 shrink-0 text-amber" />
-          {!collapsed && (
+          {expanded && (
             <span className="font-heading text-sm font-semibold tracking-wide text-foreground">
               ALTOS
             </span>
@@ -55,26 +81,47 @@ function AppLayout() {
                     ? "bg-sidebar-accent text-amber"
                     : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
                 }`}
+                title={!expanded ? item.label : undefined}
               >
                 <item.icon className="h-4 w-4 shrink-0" />
-                {!collapsed && <span>{item.label}</span>}
+                {expanded && <span>{item.label}</span>}
               </Link>
             );
           })}
         </nav>
 
-        {/* Collapse toggle */}
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="flex h-10 items-center justify-center border-t border-border text-muted-foreground hover:text-foreground"
-        >
-          {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-        </button>
+        {/* Expand/collapse toggle (desktop) */}
+        {!isMobile && (
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="flex h-10 items-center justify-center border-t border-border text-muted-foreground hover:text-foreground"
+          >
+            <Menu className="h-4 w-4" />
+          </button>
+        )}
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto">
-        <Outlet />
+      <main className="flex-1 flex flex-col overflow-auto">
+        {/* Mobile top bar */}
+        {isMobile && (
+          <header className="sticky top-0 z-20 flex h-12 items-center gap-3 border-b border-border bg-background px-3">
+            <button
+              onClick={() => setExpanded(!expanded)}
+              className="text-muted-foreground hover:text-foreground"
+            >
+              {expanded ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+            <Zap className="h-4 w-4 text-amber" />
+            <span className="font-heading text-xs font-semibold tracking-wide text-foreground">
+              ALTOS
+            </span>
+          </header>
+        )}
+
+        <div className="flex-1">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
