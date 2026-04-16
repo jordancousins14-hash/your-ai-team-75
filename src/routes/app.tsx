@@ -61,9 +61,10 @@ function AppLayout() {
       <aside
         className={`
           flex flex-col border-r border-border bg-sidebar transition-all duration-200 shrink-0
-          ${sidebarWidth}
+          ${isMobile ? (expanded ? "w-60" : "w-0 overflow-hidden border-r-0") : (expanded ? "w-60" : "w-14")}
           ${isMobile ? "fixed inset-y-0 left-0 z-40" : "relative"}
-          ${isMobile && !expanded ? "w-0 overflow-hidden border-r-0" : ""}
+          max-md:fixed max-md:inset-y-0 max-md:left-0 max-md:z-40
+          ${!expanded ? "max-md:w-0 max-md:overflow-hidden max-md:border-r-0" : ""}
         `}
       >
         {/* Logo row */}
@@ -133,21 +134,19 @@ function AppLayout() {
 
       {/* Main content */}
       <main className="flex-1 flex flex-col overflow-auto min-w-0 overflow-x-hidden">
-        {/* Mobile top bar */}
-        {isMobile && (
-          <header className="sticky top-0 z-20 flex h-12 items-center gap-3 border-b border-border bg-background px-3">
-            <button
-              onClick={() => setExpanded(!expanded)}
-              className="text-muted-foreground hover:text-foreground"
-            >
-              {expanded ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-            <Zap className="h-4 w-4 text-amber" />
-            <span className="font-heading text-xs font-semibold tracking-wide text-foreground">
-              ALTOS
-            </span>
-          </header>
-        )}
+        {/* Mobile top bar - use CSS to show on mobile even before JS hydrates */}
+        <header className="sticky top-0 z-20 flex h-12 items-center gap-3 border-b border-border bg-background px-3 md:hidden">
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            {expanded ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+          <Zap className="h-4 w-4 text-amber" />
+          <span className="font-heading text-xs font-semibold tracking-wide text-foreground">
+            ALTOS
+          </span>
+        </header>
 
         <div className="flex-1 min-w-0">
           <Outlet />
