@@ -13,6 +13,9 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppToolsRouteImport } from './routes/app.tools'
+import { Route as AppSubscriptionRouteImport } from './routes/app.subscription'
+import { Route as AppStrategyRouteImport } from './routes/app.strategy'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppKnowledgeRouteImport } from './routes/app.knowledge'
 import { Route as AppHrRouteImport } from './routes/app.hr'
 import { Route as AppForumsRouteImport } from './routes/app.forums'
@@ -36,6 +39,21 @@ const AppIndexRoute = AppIndexRouteImport.update({
 const AppToolsRoute = AppToolsRouteImport.update({
   id: '/tools',
   path: '/tools',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSubscriptionRoute = AppSubscriptionRouteImport.update({
+  id: '/subscription',
+  path: '/subscription',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStrategyRoute = AppStrategyRouteImport.update({
+  id: '/strategy',
+  path: '/strategy',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
 const AppKnowledgeRoute = AppKnowledgeRouteImport.update({
@@ -66,6 +84,9 @@ export interface FileRoutesByFullPath {
   '/app/forums': typeof AppForumsRoute
   '/app/hr': typeof AppHrRoute
   '/app/knowledge': typeof AppKnowledgeRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/strategy': typeof AppStrategyRoute
+  '/app/subscription': typeof AppSubscriptionRoute
   '/app/tools': typeof AppToolsRoute
   '/app/': typeof AppIndexRoute
 }
@@ -75,6 +96,9 @@ export interface FileRoutesByTo {
   '/app/forums': typeof AppForumsRoute
   '/app/hr': typeof AppHrRoute
   '/app/knowledge': typeof AppKnowledgeRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/strategy': typeof AppStrategyRoute
+  '/app/subscription': typeof AppSubscriptionRoute
   '/app/tools': typeof AppToolsRoute
   '/app': typeof AppIndexRoute
 }
@@ -86,6 +110,9 @@ export interface FileRoutesById {
   '/app/forums': typeof AppForumsRoute
   '/app/hr': typeof AppHrRoute
   '/app/knowledge': typeof AppKnowledgeRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/strategy': typeof AppStrategyRoute
+  '/app/subscription': typeof AppSubscriptionRoute
   '/app/tools': typeof AppToolsRoute
   '/app/': typeof AppIndexRoute
 }
@@ -98,6 +125,9 @@ export interface FileRouteTypes {
     | '/app/forums'
     | '/app/hr'
     | '/app/knowledge'
+    | '/app/settings'
+    | '/app/strategy'
+    | '/app/subscription'
     | '/app/tools'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
@@ -107,6 +137,9 @@ export interface FileRouteTypes {
     | '/app/forums'
     | '/app/hr'
     | '/app/knowledge'
+    | '/app/settings'
+    | '/app/strategy'
+    | '/app/subscription'
     | '/app/tools'
     | '/app'
   id:
@@ -117,6 +150,9 @@ export interface FileRouteTypes {
     | '/app/forums'
     | '/app/hr'
     | '/app/knowledge'
+    | '/app/settings'
+    | '/app/strategy'
+    | '/app/subscription'
     | '/app/tools'
     | '/app/'
   fileRoutesById: FileRoutesById
@@ -156,6 +192,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppToolsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/subscription': {
+      id: '/app/subscription'
+      path: '/subscription'
+      fullPath: '/app/subscription'
+      preLoaderRoute: typeof AppSubscriptionRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/strategy': {
+      id: '/app/strategy'
+      path: '/strategy'
+      fullPath: '/app/strategy'
+      preLoaderRoute: typeof AppStrategyRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/knowledge': {
       id: '/app/knowledge'
       path: '/knowledge'
@@ -192,6 +249,9 @@ interface AppRouteChildren {
   AppForumsRoute: typeof AppForumsRoute
   AppHrRoute: typeof AppHrRoute
   AppKnowledgeRoute: typeof AppKnowledgeRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppStrategyRoute: typeof AppStrategyRoute
+  AppSubscriptionRoute: typeof AppSubscriptionRoute
   AppToolsRoute: typeof AppToolsRoute
   AppIndexRoute: typeof AppIndexRoute
 }
@@ -201,6 +261,9 @@ const AppRouteChildren: AppRouteChildren = {
   AppForumsRoute: AppForumsRoute,
   AppHrRoute: AppHrRoute,
   AppKnowledgeRoute: AppKnowledgeRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppStrategyRoute: AppStrategyRoute,
+  AppSubscriptionRoute: AppSubscriptionRoute,
   AppToolsRoute: AppToolsRoute,
   AppIndexRoute: AppIndexRoute,
 }
