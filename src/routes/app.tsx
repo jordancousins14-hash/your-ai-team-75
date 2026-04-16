@@ -45,9 +45,7 @@ function AppLayout() {
     if (isMobile) setExpanded(false);
   }, [location.pathname, isMobile]);
 
-  const sidebarWidth = isMobile
-    ? (expanded ? "w-60" : "w-0")
-    : (expanded ? "w-60" : "w-14");
+  const sidebarWidth = expanded ? "w-60" : "w-14";
 
   return (
     <div className="flex min-h-screen bg-background overflow-hidden">
