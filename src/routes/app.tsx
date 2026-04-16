@@ -134,21 +134,19 @@ function AppLayout() {
 
       {/* Main content */}
       <main className="flex-1 flex flex-col overflow-auto min-w-0 overflow-x-hidden">
-        {/* Mobile top bar */}
-        {isMobile && (
-          <header className="sticky top-0 z-20 flex h-12 items-center gap-3 border-b border-border bg-background px-3">
-            <button
-              onClick={() => setExpanded(!expanded)}
-              className="text-muted-foreground hover:text-foreground"
-            >
-              {expanded ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-            <Zap className="h-4 w-4 text-amber" />
-            <span className="font-heading text-xs font-semibold tracking-wide text-foreground">
-              ALTOS
-            </span>
-          </header>
-        )}
+        {/* Mobile top bar - use CSS to show on mobile even before JS hydrates */}
+        <header className="sticky top-0 z-20 flex h-12 items-center gap-3 border-b border-border bg-background px-3 md:hidden">
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            {expanded ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+          <Zap className="h-4 w-4 text-amber" />
+          <span className="font-heading text-xs font-semibold tracking-wide text-foreground">
+            ALTOS
+          </span>
+        </header>
 
         <div className="flex-1 min-w-0">
           <Outlet />
