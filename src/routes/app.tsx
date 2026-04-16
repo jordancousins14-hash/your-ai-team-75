@@ -45,7 +45,9 @@ function AppLayout() {
     if (isMobile) setExpanded(false);
   }, [location.pathname, isMobile]);
 
-  const sidebarWidth = expanded ? "w-60" : "w-14";
+  const sidebarWidth = isMobile
+    ? (expanded ? "w-60" : "w-0")
+    : (expanded ? "w-60" : "w-14");
 
   return (
     <div className="flex min-h-screen bg-background overflow-hidden">
@@ -63,7 +65,7 @@ function AppLayout() {
           flex flex-col border-r border-border bg-sidebar transition-all duration-200 shrink-0
           ${sidebarWidth}
           ${isMobile ? "fixed inset-y-0 left-0 z-40" : "relative"}
-          ${isMobile && !expanded ? "w-0 overflow-hidden border-r-0" : ""}
+          ${isMobile && !expanded ? "overflow-hidden border-r-0" : ""}
         `}
       >
         {/* Logo row */}
