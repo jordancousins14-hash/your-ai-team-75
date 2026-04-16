@@ -1,0 +1,177 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Check, Lock, Crown, Zap, Rocket } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
+
+export const Route = createFileRoute("/app/subscription")({
+  head: () => ({
+    meta: [{ title: "Subscription — Altos" }],
+  }),
+  component: SubscriptionPage,
+});
+
+const tiers = [
+  {
+    name: "Starter",
+    price: "£49",
+    period: "/month",
+    icon: Zap,
+    current: true,
+    personas: [
+      { name: "Morgan — Chief of Staff", unlocked: true },
+      { name: "Alex — Supply Chain", unlocked: true },
+      { name: "Jordan — Sentiment Analyst", unlocked: true },
+    ],
+    features: ["3 AI team members", "5 forum spaces", "Basic integrations", "Morning briefings"],
+  },
+  {
+    name: "Pro",
+    price: "£129",
+    period: "/month",
+    icon: Crown,
+    current: false,
+    personas: [
+      { name: "Morgan — Chief of Staff", unlocked: true },
+      { name: "Alex — Supply Chain", unlocked: true },
+      { name: "Jordan — Sentiment Analyst", unlocked: true },
+      { name: "Riley — BI & Data Science", unlocked: true },
+      { name: "Sam — Social Media Manager", unlocked: true },
+      { name: "Casey — Customer Success", unlocked: true },
+    ],
+    features: ["6 AI team members", "Unlimited forums", "All integrations", "Strategy Room", "Priority analysis"],
+  },
+  {
+    name: "Enterprise",
+    price: "£299",
+    period: "/month",
+    icon: Rocket,
+    current: false,
+    personas: [
+      { name: "All Pro personas", unlocked: true },
+      { name: "Taylor — Finance Director", unlocked: true },
+      { name: "Quinn — Operations Manager", unlocked: true },
+      { name: "Drew — Marketing Strategist", unlocked: true },
+      { name: "Custom personas", unlocked: true },
+    ],
+    features: ["10+ AI team members", "Custom personas", "API access", "Dedicated support", "White-label options"],
+  },
+];
+
+const invoices = [
+  { id: "INV-001", date: "1 Apr 2026", amount: "£49.00", status: "Paid" },
+  { id: "INV-002", date: "1 Mar 2026", amount: "£49.00", status: "Paid" },
+  { id: "INV-003", date: "1 Feb 2026", amount: "£49.00", status: "Paid" },
+];
+
+function SubscriptionPage() {
+  const [selectedTier] = useState("Starter");
+
+  return (
+    <div className="p-4 sm:p-6 space-y-8 min-w-0">
+      <div>
+        <h1 className="font-heading text-xl font-bold text-foreground">Subscription</h1>
+        <p className="text-sm text-muted-foreground mt-1">Manage your plan and billing.</p>
+      </div>
+
+      {/* Tier cards */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {tiers.map((tier) => {
+          const isCurrent = tier.name === selectedTier;
+          return (
+            <div
+              key={tier.name}
+              className={`rounded-xl border p-5 flex flex-col ${
+                isCurrent
+                  ? "border-amber/40 bg-amber/5"
+                  : "border-border bg-card"
+              }`}
+            >
+              <div className="flex items-center gap-2 mb-3">
+                <tier.icon className={`h-5 w-5 ${isCurrent ? "text-amber" : "text-muted-foreground"}`} />
+                <h3 className="font-heading text-base font-bold text-foreground">{tier.name}</h3>
+                {isCurrent && <Badge className="ml-auto bg-amber/20 text-amber border-0 text-xs">Current</Badge>}
+              </div>
+
+              <div className="mb-4">
+                <span className="text-2xl font-bold text-foreground">{tier.price}</span>
+                <span className="text-sm text-muted-foreground">{tier.period}</span>
+              </div>
+
+              {/* Personas */}
+              <div className="mb-4 space-y-1.5">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Team Members</p>
+                {tier.personas.map((p) => (
+                  <div key={p.name} className="flex items-center gap-2 text-sm">
+                    {p.unlocked ? (
+                      <Check className="h-3.5 w-3.5 text-emerald-400" />
+                    ) : (
+                      <Lock className="h-3.5 w-3.5 text-muted-foreground/40" />
+                    )}
+                    <span className={p.unlocked ? "text-foreground" : "text-muted-foreground/40"}>{p.name}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Features */}
+              <div className="mb-5 space-y-1.5 flex-1">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Features</p>
+                {tier.features.map((f) => (
+                  <div key={f} className="flex items-center gap-2 text-sm text-foreground/80">
+                    <Check className="h-3.5 w-3.5 text-amber/60" />
+                    <span>{f}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                className={`w-full rounded-md py-2 text-sm font-medium transition-colors ${
+                  isCurrent
+                    ? "bg-muted text-muted-foreground cursor-default"
+                    : "bg-amber text-background hover:bg-amber/90"
+                }`}
+                disabled={isCurrent}
+              >
+                {isCurrent ? "Current Plan" : "Upgrade"}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Billing */}
+      <section className="space-y-4">
+        <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider">Billing History</h2>
+        <div className="rounded-lg border border-border bg-card overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-border text-left text-xs text-muted-foreground">
+                <th className="px-4 py-3 font-medium">Invoice</th>
+                <th className="px-4 py-3 font-medium">Date</th>
+                <th className="px-4 py-3 font-medium">Amount</th>
+                <th className="px-4 py-3 font-medium">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {invoices.map((inv) => (
+                <tr key={inv.id} className="border-b border-border last:border-0">
+                  <td className="px-4 py-3 text-foreground">{inv.id}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{inv.date}</td>
+                  <td className="px-4 py-3 text-foreground">{inv.amount}</td>
+                  <td className="px-4 py-3">
+                    <Badge variant="secondary" className="text-xs">{inv.status}</Badge>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-2">Payment Method</p>
+          <p className="text-sm text-foreground">•••• •••• •••• 4242</p>
+          <p className="text-xs text-muted-foreground mt-1">Expires 12/27</p>
+        </div>
+      </section>
+    </div>
+  );
+}
