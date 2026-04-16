@@ -8,6 +8,9 @@ import {
   Menu,
   X,
   Zap,
+  Briefcase,
+  CreditCard,
+  Settings,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -21,10 +24,16 @@ export const Route = createFileRoute("/app")({
 
 const navItems = [
   { to: "/app/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/app/strategy", label: "Strategy", icon: Briefcase },
   { to: "/app/hr", label: "HR Room", icon: Users },
   { to: "/app/forums", label: "Forums", icon: MessageSquare },
   { to: "/app/tools", label: "Tools", icon: Wrench },
   { to: "/app/knowledge", label: "Knowledge", icon: BookOpen },
+] as const;
+
+const bottomNavItems = [
+  { to: "/app/subscription", label: "Subscription", icon: CreditCard },
+  { to: "/app/settings", label: "Settings", icon: Settings },
 ] as const;
 
 function AppLayout() {
@@ -32,7 +41,6 @@ function AppLayout() {
   const [expanded, setExpanded] = useState(false);
   const location = useLocation();
 
-  // Auto-collapse on mobile route change
   useEffect(() => {
     if (isMobile) setExpanded(false);
   }, [location.pathname, isMobile]);
@@ -40,7 +48,7 @@ function AppLayout() {
   const sidebarWidth = expanded ? "w-60" : "w-14";
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex min-h-screen bg-background overflow-hidden">
       {/* Mobile overlay */}
       {isMobile && expanded && (
         <div
@@ -52,7 +60,7 @@ function AppLayout() {
       {/* Sidebar */}
       <aside
         className={`
-          flex flex-col border-r border-border bg-sidebar transition-all duration-200
+          flex flex-col border-r border-border bg-sidebar transition-all duration-200 shrink-0
           ${sidebarWidth}
           ${isMobile ? "fixed inset-y-0 left-0 z-40" : "relative"}
           ${isMobile && !expanded ? "w-0 overflow-hidden border-r-0" : ""}
@@ -90,6 +98,28 @@ function AppLayout() {
           })}
         </nav>
 
+        {/* Bottom nav */}
+        <div className="space-y-1 border-t border-border p-2">
+          {bottomNavItems.map((item) => {
+            const active = location.pathname.startsWith(item.to);
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                  active
+                    ? "bg-sidebar-accent text-amber"
+                    : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
+                }`}
+                title={!expanded ? item.label : undefined}
+              >
+                <item.icon className="h-4 w-4 shrink-0" />
+                {expanded && <span>{item.label}</span>}
+              </Link>
+            );
+          })}
+        </div>
+
         {/* Expand/collapse toggle (desktop) */}
         {!isMobile && (
           <button
@@ -102,7 +132,7 @@ function AppLayout() {
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col overflow-auto">
+      <main className="flex-1 flex flex-col overflow-auto min-w-0 overflow-x-hidden">
         {/* Mobile top bar */}
         {isMobile && (
           <header className="sticky top-0 z-20 flex h-12 items-center gap-3 border-b border-border bg-background px-3">
@@ -119,7 +149,7 @@ function AppLayout() {
           </header>
         )}
 
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           <Outlet />
         </div>
       </main>

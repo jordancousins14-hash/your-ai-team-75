@@ -49,7 +49,7 @@ function ForumsPage() {
   const [activeForum, setActiveForum] = useState<Forum | null>(null);
 
   return (
-    <div className="flex h-[calc(100vh)] flex-col lg:flex-row">
+    <div className="flex h-[calc(100dvh-3rem)] lg:h-[calc(100dvh)] flex-col lg:flex-row">
       {/* Forum list */}
       <div className={`border-b lg:border-b-0 lg:border-r border-border lg:w-80 shrink-0 flex flex-col ${activeForum ? "hidden lg:flex" : "flex"}`}>
         <div className="flex items-center justify-between border-b border-border p-4">
