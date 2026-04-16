@@ -63,9 +63,10 @@ function AppLayout() {
       <aside
         className={`
           flex flex-col border-r border-border bg-sidebar transition-all duration-200 shrink-0
-          ${sidebarWidth}
+          ${isMobile ? (expanded ? "w-60" : "w-0 overflow-hidden border-r-0") : (expanded ? "w-60" : "w-14")}
           ${isMobile ? "fixed inset-y-0 left-0 z-40" : "relative"}
-          ${isMobile && !expanded ? "overflow-hidden border-r-0" : ""}
+          max-md:fixed max-md:inset-y-0 max-md:left-0 max-md:z-40
+          ${!expanded ? "max-md:w-0 max-md:overflow-hidden max-md:border-r-0" : ""}
         `}
       >
         {/* Logo row */}
