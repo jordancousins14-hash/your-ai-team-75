@@ -101,9 +101,18 @@ function SubscriptionPage() {
                 {isCurrent && <Badge className="ml-auto bg-amber/20 text-amber border-0 text-xs">Current</Badge>}
               </div>
 
-              <div className="mb-4">
+              <div className="mb-3">
                 <span className="text-2xl font-bold text-foreground">{tier.price}</span>
                 <span className="text-sm text-muted-foreground">{tier.period}</span>
+              </div>
+
+              {/* Volume allowance */}
+              <div className="mb-4 flex items-center gap-2 rounded-md border border-border/60 bg-background/40 px-2.5 py-1.5">
+                <Activity className="h-3.5 w-3.5 text-amber" />
+                <span className="text-xs text-foreground">
+                  <span className="font-semibold">{formatVolume(tier.volume)}</span>
+                  <span className="text-muted-foreground"> AI actions / mo included</span>
+                </span>
               </div>
 
               {/* Personas */}
