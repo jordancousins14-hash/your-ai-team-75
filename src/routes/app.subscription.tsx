@@ -74,6 +74,12 @@ const invoices = [
 
 function SubscriptionPage() {
   const [selectedTier] = useState("Starter");
+  const [bundles, setBundles] = useState(0);
+  const usedActions = 7_842; // mock current month usage
+  const currentTier = tiers.find((t) => t.name === selectedTier) ?? tiers[0];
+  const totalAllowance = currentTier.volume + bundles * BUNDLE_SIZE;
+  const usagePct = Math.min(100, Math.round((usedActions / totalAllowance) * 100));
+  const remaining = Math.max(0, totalAllowance - usedActions);
 
   return (
     <div className="p-4 sm:p-6 space-y-8 min-w-0">
