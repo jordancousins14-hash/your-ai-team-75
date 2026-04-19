@@ -17,6 +17,7 @@ const tiers = [
     period: "/month",
     icon: Zap,
     current: true,
+    volume: 10_000,
     personas: [
       { name: "Morgan — Chief of Staff", unlocked: true },
       { name: "Alex — Supply Chain", unlocked: true },
@@ -30,6 +31,7 @@ const tiers = [
     period: "/month",
     icon: Crown,
     current: false,
+    volume: 25_000,
     personas: [
       { name: "Morgan — Chief of Staff", unlocked: true },
       { name: "Alex — Supply Chain", unlocked: true },
@@ -46,6 +48,7 @@ const tiers = [
     period: "/month",
     icon: Rocket,
     current: false,
+    volume: 100_000,
     personas: [
       { name: "All Pro personas", unlocked: true },
       { name: "Taylor — Finance Director", unlocked: true },
@@ -56,6 +59,12 @@ const tiers = [
     features: ["10+ AI team members", "Custom personas", "API access", "Dedicated support", "White-label options"],
   },
 ];
+
+const BUNDLE_SIZE = 10_000;
+const BUNDLE_PRICE = 5;
+
+const formatVolume = (n: number) =>
+  n >= 1000 ? `${(n / 1000).toLocaleString("en-GB")}k` : n.toLocaleString("en-GB");
 
 const invoices = [
   { id: "INV-001", date: "1 Apr 2026", amount: "£49.00", status: "Paid" },
