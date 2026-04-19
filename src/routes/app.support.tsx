@@ -90,9 +90,16 @@ function SupportPage() {
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="font-heading text-xl font-bold text-foreground">Customer Support</h1>
             <Badge className="bg-amber/20 text-amber border-0 text-xs">Add-on · Active</Badge>
+            {supportIIUnlocked ? (
+              <Badge className="bg-emerald-400/15 text-emerald-400 border-0 text-xs">Support II · Agentic</Badge>
+            ) : (
+              <Badge className="bg-muted text-muted-foreground border-0 text-xs">Support I · Read & Reply</Badge>
+            )}
           </div>
           <p className="text-sm text-muted-foreground mt-1">
-            A dedicated AI agent that handles tickets across your support channels — grounded in your knowledge base.
+            {supportIIUnlocked
+              ? "An agentic AI teammate that reads tickets, replies, and takes action in your store on your behalf."
+              : "An AI agent that reads tickets and drafts replies grounded in your FAQs and policies."}
           </p>
         </div>
       </div>
