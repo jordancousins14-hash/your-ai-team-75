@@ -11,6 +11,11 @@ import {
   Check,
   Sparkles,
   Lock,
+  Zap,
+  ShieldCheck,
+  RefreshCw,
+  Truck,
+  Wand2,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
