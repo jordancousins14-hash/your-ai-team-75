@@ -403,23 +403,33 @@ function SupportPage() {
             </p>
           </div>
 
-          {/* Auto reply */}
+          {/* Auto reply — gated to Support II */}
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <p className="text-sm font-medium text-foreground">Auto-send replies</p>
+              <div className="flex items-center gap-2 flex-wrap">
+                <p className="text-sm font-medium text-foreground">Auto-send replies & actions</p>
+                {!supportIIUnlocked && (
+                  <Badge className="bg-muted text-muted-foreground border-0 text-[10px]">
+                    <Lock className="h-3 w-3 mr-1" /> Support II
+                  </Badge>
+                )}
+              </div>
               <p className="text-xs text-muted-foreground mt-0.5">
-                When off, replies are drafted and wait for your approval.
+                {supportIIUnlocked
+                  ? "Replies and any allowed Shopify actions are sent without waiting for your approval."
+                  : "Support I always drafts and waits for approval. Unlock Support II to let the agent send and act on its own."}
               </p>
             </div>
             <button
+              disabled={!supportIIUnlocked}
               onClick={() => setAutoReply(!autoReply)}
-              className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${
-                autoReply ? "bg-amber" : "bg-muted"
+              className={`relative h-6 w-11 shrink-0 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+                autoReply && supportIIUnlocked ? "bg-emerald-400" : "bg-muted"
               }`}
             >
               <span
                 className={`absolute top-0.5 h-5 w-5 rounded-full bg-background transition-transform ${
-                  autoReply ? "translate-x-5" : "translate-x-0.5"
+                  autoReply && supportIIUnlocked ? "translate-x-5" : "translate-x-0.5"
                 }`}
               />
             </button>
