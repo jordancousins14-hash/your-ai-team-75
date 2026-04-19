@@ -63,6 +63,15 @@ function SupportPage() {
   const [tone, setTone] = useState("Warm & friendly");
   const [autoReply, setAutoReply] = useState(false);
   const [escalateThreshold, setEscalateThreshold] = useState(3);
+  // Support II (Agentic) — separate paid unlock on top of the base Support add-on.
+  const [supportIIUnlocked, setSupportIIUnlocked] = useState(false);
+  const [agenticActions, setAgenticActions] = useState({
+    refunds: true,
+    addressChange: true,
+    cancelOrder: false,
+    reshipOrder: false,
+  });
+  const [refundCap, setRefundCap] = useState(50);
 
   const knowledgeComplete = Object.values(knowledgeReadiness).every(Boolean);
 
