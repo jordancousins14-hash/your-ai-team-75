@@ -138,6 +138,60 @@ function SubscriptionPage() {
         })}
       </div>
 
+      {/* Add-ons */}
+      <section className="space-y-3">
+        <div>
+          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider">Add-ons</h2>
+          <p className="text-xs text-muted-foreground mt-1">
+            Standalone personas available on every tier.
+          </p>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2">
+          {/* Support I */}
+          <div className="rounded-xl border border-amber/40 bg-amber/5 p-5 flex flex-col">
+            <div className="flex items-center gap-2">
+              <Headphones className="h-5 w-5 text-amber" />
+              <h3 className="font-heading text-base font-bold text-foreground">Customer Support I</h3>
+              <Badge className="ml-auto bg-amber/20 text-amber border-0 text-xs">Active</Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              AI agent that reads tickets and drafts on-brand replies grounded in your FAQs and policies. You stay in control of every send.
+            </p>
+            <div className="mt-4">
+              <span className="text-2xl font-bold text-foreground">£39</span>
+              <span className="text-sm text-muted-foreground">/month</span>
+            </div>
+            <Link
+              to="/app/support"
+              className="mt-4 inline-flex items-center justify-center rounded-md bg-muted text-muted-foreground py-2 text-sm font-medium"
+            >
+              Manage
+            </Link>
+          </div>
+
+          {/* Support II */}
+          <div className="rounded-xl border border-border bg-card p-5 flex flex-col">
+            <div className="flex items-center gap-2">
+              <Plus className="h-5 w-5 text-emerald-400" />
+              <h3 className="font-heading text-base font-bold text-foreground">Customer Support II — Agentic</h3>
+              <Badge className="ml-auto bg-muted text-muted-foreground border-0 text-xs">Locked</Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              Everything in Support I, plus the ability to act in Shopify on the customer's behalf — refunds,
+              address changes, cancellations and reshipments — within limits you set.
+            </p>
+            <div className="mt-4">
+              <span className="text-2xl font-bold text-foreground">+£49</span>
+              <span className="text-sm text-muted-foreground">/month</span>
+              <p className="text-[11px] text-muted-foreground mt-1">Requires Customer Support I.</p>
+            </div>
+            <button className="mt-4 inline-flex items-center justify-center rounded-md bg-emerald-400 text-background py-2 text-sm font-medium hover:bg-emerald-400/90">
+              Unlock Support II
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Billing */}
       <section className="space-y-4">
         <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider">Billing History</h2>

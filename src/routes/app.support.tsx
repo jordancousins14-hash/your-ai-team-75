@@ -11,6 +11,11 @@ import {
   Check,
   Sparkles,
   Lock,
+  Zap,
+  ShieldCheck,
+  RefreshCw,
+  Truck,
+  Wand2,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
@@ -58,6 +63,15 @@ function SupportPage() {
   const [tone, setTone] = useState("Warm & friendly");
   const [autoReply, setAutoReply] = useState(false);
   const [escalateThreshold, setEscalateThreshold] = useState(3);
+  // Support II (Agentic) — separate paid unlock on top of the base Support add-on.
+  const [supportIIUnlocked, setSupportIIUnlocked] = useState(false);
+  const [agenticActions, setAgenticActions] = useState({
+    refunds: true,
+    addressChange: true,
+    cancelOrder: false,
+    reshipOrder: false,
+  });
+  const [refundCap, setRefundCap] = useState(50);
 
   const knowledgeComplete = Object.values(knowledgeReadiness).every(Boolean);
 
@@ -76,9 +90,16 @@ function SupportPage() {
           <div className="flex items-center gap-2 flex-wrap">
             <h1 className="font-heading text-xl font-bold text-foreground">Customer Support</h1>
             <Badge className="bg-amber/20 text-amber border-0 text-xs">Add-on · Active</Badge>
+            {supportIIUnlocked ? (
+              <Badge className="bg-emerald-400/15 text-emerald-400 border-0 text-xs">Support II · Agentic</Badge>
+            ) : (
+              <Badge className="bg-muted text-muted-foreground border-0 text-xs">Support I · Read & Reply</Badge>
+            )}
           </div>
           <p className="text-sm text-muted-foreground mt-1">
-            A dedicated AI agent that handles tickets across your support channels — grounded in your knowledge base.
+            {supportIIUnlocked
+              ? "An agentic AI teammate that reads tickets, replies, and takes action in your store on your behalf."
+              : "An AI agent that reads tickets and drafts replies grounded in your FAQs and policies."}
           </p>
         </div>
       </div>
@@ -180,6 +201,175 @@ function SupportPage() {
         </div>
       </section>
 
+      {/* Tier — Support I vs Support II */}
+      <section className="space-y-3">
+        <div>
+          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider">Capability Tier</h2>
+          <p className="text-xs text-muted-foreground mt-1">
+            Decide how much your support agent is allowed to do on its own.
+          </p>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-2">
+          {/* Support I */}
+          <div className="rounded-xl border border-amber/40 bg-amber/5 p-4 flex flex-col">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-amber" />
+              <span className="font-semibold text-sm text-foreground">Support I — Read & Reply</span>
+              <Badge className="ml-auto bg-amber/20 text-amber border-0 text-[10px]">Included</Badge>
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              Reads incoming tickets and drafts on-brand replies using your FAQs and policies. Cannot make changes
+              to your store — every action stays with you.
+            </p>
+            <ul className="mt-3 space-y-1.5 text-xs text-foreground/80">
+              <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-amber" /> Drafts replies for approval</li>
+              <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-amber" /> Grounded in your knowledge base</li>
+              <li className="flex items-center gap-2"><Check className="h-3.5 w-3.5 text-amber" /> Escalates anything it's unsure about</li>
+            </ul>
+          </div>
+
+          {/* Support II */}
+          <div
+            className={`rounded-xl border p-4 flex flex-col transition-colors ${
+              supportIIUnlocked ? "border-emerald-400/40 bg-emerald-400/5" : "border-border bg-card"
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <Zap className={`h-4 w-4 ${supportIIUnlocked ? "text-emerald-400" : "text-muted-foreground"}`} />
+              <span className="font-semibold text-sm text-foreground">Support II — Agentic</span>
+              {supportIIUnlocked ? (
+                <Badge className="ml-auto bg-emerald-400/15 text-emerald-400 border-0 text-[10px]">Unlocked</Badge>
+              ) : (
+                <Badge className="ml-auto bg-muted text-muted-foreground border-0 text-[10px]">+ £49/mo</Badge>
+              )}
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              Everything in Support I, plus the ability to take action in Shopify on the customer's behalf — refunds,
+              address changes, cancellations and reshipments — within the limits you set.
+            </p>
+            <ul className="mt-3 space-y-1.5 text-xs text-foreground/80">
+              <li className="flex items-center gap-2"><RefreshCw className="h-3.5 w-3.5 text-emerald-400" /> Issue refunds (capped)</li>
+              <li className="flex items-center gap-2"><Truck className="h-3.5 w-3.5 text-emerald-400" /> Update shipping addresses</li>
+              <li className="flex items-center gap-2"><Wand2 className="h-3.5 w-3.5 text-emerald-400" /> Cancel & reship orders</li>
+            </ul>
+
+            <div className="mt-4 flex items-center justify-between gap-3 pt-3 border-t border-border/60">
+              <div className="min-w-0">
+                <p className="text-xs font-medium text-foreground">
+                  {supportIIUnlocked ? "Agentic actions enabled" : "Unlock agentic actions"}
+                </p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">
+                  {supportIIUnlocked
+                    ? "Toggle off to revert to draft-only Support I behaviour."
+                    : "A further paid unlock on top of Customer Support."}
+                </p>
+              </div>
+              <button
+                onClick={() => setSupportIIUnlocked((v) => !v)}
+                className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${
+                  supportIIUnlocked ? "bg-emerald-400" : "bg-muted"
+                }`}
+                aria-label="Toggle Support II"
+              >
+                <span
+                  className={`absolute top-0.5 h-5 w-5 rounded-full bg-background transition-transform ${
+                    supportIIUnlocked ? "translate-x-5" : "translate-x-0.5"
+                  }`}
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Agentic action permissions — only meaningful when Support II is on */}
+        <div
+          className={`rounded-xl border p-4 transition-opacity ${
+            supportIIUnlocked ? "border-border bg-card" : "border-border bg-card/40 opacity-60"
+          }`}
+        >
+          <div className="flex items-center gap-2">
+            <Wand2 className="h-4 w-4 text-emerald-400" />
+            <p className="text-sm font-medium text-foreground">Agentic permissions</p>
+            {!supportIIUnlocked && (
+              <Badge className="ml-auto bg-muted text-muted-foreground border-0 text-[10px]">
+                <Lock className="h-3 w-3 mr-1" /> Support II required
+              </Badge>
+            )}
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">
+            Choose exactly which write actions your agent may perform in Shopify without asking you first.
+          </p>
+
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            {[
+              { key: "refunds" as const, label: "Issue refunds", icon: RefreshCw },
+              { key: "addressChange" as const, label: "Change shipping address", icon: Truck },
+              { key: "cancelOrder" as const, label: "Cancel orders", icon: AlertTriangle },
+              { key: "reshipOrder" as const, label: "Reship orders", icon: Wand2 },
+            ].map((a) => {
+              const on = agenticActions[a.key] && supportIIUnlocked;
+              return (
+                <button
+                  key={a.key}
+                  disabled={!supportIIUnlocked}
+                  onClick={() =>
+                    setAgenticActions((p) => ({ ...p, [a.key]: !p[a.key] }))
+                  }
+                  className={`text-left rounded-lg border p-3 flex items-center gap-3 transition-colors ${
+                    on
+                      ? "border-emerald-400/40 bg-emerald-400/5"
+                      : "border-border bg-background hover:border-border/80 disabled:hover:border-border"
+                  } disabled:cursor-not-allowed`}
+                >
+                  <a.icon className={`h-4 w-4 ${on ? "text-emerald-400" : "text-muted-foreground"}`} />
+                  <span className="text-sm text-foreground">{a.label}</span>
+                  <span
+                    className={`ml-auto text-[10px] uppercase tracking-wider font-semibold ${
+                      on ? "text-emerald-400" : "text-muted-foreground/70"
+                    }`}
+                  >
+                    {on ? "Allowed" : "Off"}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mt-4">
+            <label className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              Refund limit (no approval needed)
+            </label>
+            <div className="mt-2 flex items-center gap-3">
+              <input
+                type="range"
+                min={0}
+                max={500}
+                step={10}
+                value={refundCap}
+                onChange={(e) => setRefundCap(Number(e.target.value))}
+                disabled={!supportIIUnlocked}
+                className="flex-1 accent-emerald-400 disabled:opacity-50"
+              />
+              <span className="text-sm font-mono text-foreground w-20 text-right">£{refundCap}</span>
+            </div>
+            <p className="text-[11px] text-muted-foreground mt-2">
+              Refunds above this amount are always sent to you for approval, regardless of tier.
+            </p>
+          </div>
+
+          {!supportIIUnlocked && (
+            <Link
+              to="/app/subscription"
+              className="inline-flex items-center gap-1.5 mt-4 text-xs font-medium text-emerald-400 hover:text-emerald-400/80"
+            >
+              <Sparkles className="h-3.5 w-3.5" />
+              Upgrade to Support II — £49/mo
+            </Link>
+          )}
+        </div>
+      </section>
+
       {/* Behaviour */}
       <section className="space-y-3">
         <div>
@@ -213,23 +403,33 @@ function SupportPage() {
             </p>
           </div>
 
-          {/* Auto reply */}
+          {/* Auto reply — gated to Support II */}
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <p className="text-sm font-medium text-foreground">Auto-send replies</p>
+              <div className="flex items-center gap-2 flex-wrap">
+                <p className="text-sm font-medium text-foreground">Auto-send replies & actions</p>
+                {!supportIIUnlocked && (
+                  <Badge className="bg-muted text-muted-foreground border-0 text-[10px]">
+                    <Lock className="h-3 w-3 mr-1" /> Support II
+                  </Badge>
+                )}
+              </div>
               <p className="text-xs text-muted-foreground mt-0.5">
-                When off, replies are drafted and wait for your approval.
+                {supportIIUnlocked
+                  ? "Replies and any allowed Shopify actions are sent without waiting for your approval."
+                  : "Support I always drafts and waits for approval. Unlock Support II to let the agent send and act on its own."}
               </p>
             </div>
             <button
+              disabled={!supportIIUnlocked}
               onClick={() => setAutoReply(!autoReply)}
-              className={`relative h-6 w-11 shrink-0 rounded-full transition-colors ${
-                autoReply ? "bg-amber" : "bg-muted"
+              className={`relative h-6 w-11 shrink-0 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+                autoReply && supportIIUnlocked ? "bg-emerald-400" : "bg-muted"
               }`}
             >
               <span
                 className={`absolute top-0.5 h-5 w-5 rounded-full bg-background transition-transform ${
-                  autoReply ? "translate-x-5" : "translate-x-0.5"
+                  autoReply && supportIIUnlocked ? "translate-x-5" : "translate-x-0.5"
                 }`}
               />
             </button>
