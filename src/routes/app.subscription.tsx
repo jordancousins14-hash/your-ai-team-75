@@ -181,7 +181,7 @@ function SubscriptionPage() {
               address changes, cancellations and reshipments — within limits you set.
             </p>
             <div className="mt-4">
-              <span className="text-2xl font-bold text-foreground">+£49</span>
+              <span className="text-2xl font-bold text-foreground">+£10</span>
               <span className="text-sm text-muted-foreground">/month</span>
               <p className="text-[11px] text-muted-foreground mt-1">Requires Customer Support I.</p>
             </div>
