@@ -13,6 +13,7 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppToolsRouteImport } from './routes/app.tools'
+import { Route as AppSupportRouteImport } from './routes/app.support'
 import { Route as AppSubscriptionRouteImport } from './routes/app.subscription'
 import { Route as AppStrategyRouteImport } from './routes/app.strategy'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
@@ -39,6 +40,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
 const AppToolsRoute = AppToolsRouteImport.update({
   id: '/tools',
   path: '/tools',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSupportRoute = AppSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
   getParentRoute: () => AppRoute,
 } as any)
 const AppSubscriptionRoute = AppSubscriptionRouteImport.update({
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/app/settings': typeof AppSettingsRoute
   '/app/strategy': typeof AppStrategyRoute
   '/app/subscription': typeof AppSubscriptionRoute
+  '/app/support': typeof AppSupportRoute
   '/app/tools': typeof AppToolsRoute
   '/app/': typeof AppIndexRoute
 }
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/app/settings': typeof AppSettingsRoute
   '/app/strategy': typeof AppStrategyRoute
   '/app/subscription': typeof AppSubscriptionRoute
+  '/app/support': typeof AppSupportRoute
   '/app/tools': typeof AppToolsRoute
   '/app': typeof AppIndexRoute
 }
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/app/settings': typeof AppSettingsRoute
   '/app/strategy': typeof AppStrategyRoute
   '/app/subscription': typeof AppSubscriptionRoute
+  '/app/support': typeof AppSupportRoute
   '/app/tools': typeof AppToolsRoute
   '/app/': typeof AppIndexRoute
 }
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/strategy'
     | '/app/subscription'
+    | '/app/support'
     | '/app/tools'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/strategy'
     | '/app/subscription'
+    | '/app/support'
     | '/app/tools'
     | '/app'
   id:
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/strategy'
     | '/app/subscription'
+    | '/app/support'
     | '/app/tools'
     | '/app/'
   fileRoutesById: FileRoutesById
@@ -190,6 +202,13 @@ declare module '@tanstack/react-router' {
       path: '/tools'
       fullPath: '/app/tools'
       preLoaderRoute: typeof AppToolsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/support': {
+      id: '/app/support'
+      path: '/support'
+      fullPath: '/app/support'
+      preLoaderRoute: typeof AppSupportRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/subscription': {
@@ -252,6 +271,7 @@ interface AppRouteChildren {
   AppSettingsRoute: typeof AppSettingsRoute
   AppStrategyRoute: typeof AppStrategyRoute
   AppSubscriptionRoute: typeof AppSubscriptionRoute
+  AppSupportRoute: typeof AppSupportRoute
   AppToolsRoute: typeof AppToolsRoute
   AppIndexRoute: typeof AppIndexRoute
 }
@@ -264,6 +284,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppSettingsRoute: AppSettingsRoute,
   AppStrategyRoute: AppStrategyRoute,
   AppSubscriptionRoute: AppSubscriptionRoute,
+  AppSupportRoute: AppSupportRoute,
   AppToolsRoute: AppToolsRoute,
   AppIndexRoute: AppIndexRoute,
 }

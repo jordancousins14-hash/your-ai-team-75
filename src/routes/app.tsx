@@ -11,6 +11,7 @@ import {
   Briefcase,
   CreditCard,
   Settings,
+  Headphones,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -29,6 +30,7 @@ const navItems = [
   { to: "/app/forums", label: "Forums", icon: MessageSquare },
   { to: "/app/tools", label: "Tools", icon: Wrench },
   { to: "/app/knowledge", label: "Knowledge", icon: BookOpen },
+  { to: "/app/support", label: "Support", icon: Headphones },
 ] as const;
 
 const bottomNavItems = [
