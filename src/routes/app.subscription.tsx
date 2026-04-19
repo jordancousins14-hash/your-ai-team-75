@@ -162,6 +162,86 @@ function SubscriptionPage() {
         })}
       </div>
 
+      {/* Volume usage & bundles */}
+      <section className="space-y-3">
+        <div>
+          <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider">Volume & Bundles</h2>
+          <p className="text-xs text-muted-foreground mt-1">
+            Your plan includes a monthly allowance of AI actions across all personas. Top up with bundles when you need more headroom.
+          </p>
+        </div>
+
+        <div className="rounded-xl border border-border bg-card p-5 space-y-4">
+          <div className="flex items-start justify-between gap-3 flex-wrap">
+            <div className="flex items-center gap-2">
+              <Activity className="h-4 w-4 text-amber" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">This month's usage</p>
+                <p className="text-xs text-muted-foreground">
+                  {usedActions.toLocaleString("en-GB")} of {totalAllowance.toLocaleString("en-GB")} AI actions used
+                </p>
+              </div>
+            </div>
+            <Badge className="bg-amber/15 text-amber border-0 text-xs">{usagePct}%</Badge>
+          </div>
+
+          <div className="h-2 rounded-full bg-muted overflow-hidden">
+            <div
+              className={`h-full transition-all ${usagePct >= 90 ? "bg-rose-500" : usagePct >= 70 ? "bg-amber" : "bg-emerald-400"}`}
+              style={{ width: `${usagePct}%` }}
+            />
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-3 text-xs">
+            <div className="rounded-md border border-border/60 bg-background/40 px-3 py-2">
+              <p className="text-muted-foreground uppercase tracking-wider text-[10px] font-semibold">Plan included</p>
+              <p className="text-foreground font-semibold mt-1">{currentTier.volume.toLocaleString("en-GB")}</p>
+            </div>
+            <div className="rounded-md border border-border/60 bg-background/40 px-3 py-2">
+              <p className="text-muted-foreground uppercase tracking-wider text-[10px] font-semibold">Bundles ({bundles})</p>
+              <p className="text-foreground font-semibold mt-1">+{(bundles * BUNDLE_SIZE).toLocaleString("en-GB")}</p>
+            </div>
+            <div className="rounded-md border border-border/60 bg-background/40 px-3 py-2">
+              <p className="text-muted-foreground uppercase tracking-wider text-[10px] font-semibold">Remaining</p>
+              <p className="text-foreground font-semibold mt-1">{remaining.toLocaleString("en-GB")}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-xl border border-border bg-card p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <Package className="h-5 w-5 text-amber mt-0.5" />
+            <div>
+              <p className="text-sm font-semibold text-foreground">Volume Bundle</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                +{formatVolume(BUNDLE_SIZE)} AI actions for £{BUNDLE_PRICE}/mo. Stack as many as you need.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 self-end sm:self-auto">
+            <button
+              onClick={() => setBundles((b) => Math.max(0, b - 1))}
+              className="h-8 w-8 rounded-md border border-border bg-background text-foreground hover:bg-muted disabled:opacity-40"
+              disabled={bundles === 0}
+              aria-label="Remove bundle"
+            >
+              −
+            </button>
+            <span className="min-w-[2.5rem] text-center text-sm font-semibold text-foreground">{bundles}</span>
+            <button
+              onClick={() => setBundles((b) => b + 1)}
+              className="h-8 w-8 rounded-md bg-amber text-background hover:bg-amber/90"
+              aria-label="Add bundle"
+            >
+              +
+            </button>
+            <span className="ml-3 text-sm font-semibold text-foreground whitespace-nowrap">
+              +£{bundles * BUNDLE_PRICE}/mo
+            </span>
+          </div>
+        </div>
+      </section>
+
       {/* Add-ons */}
       <section className="space-y-3">
         <div>
