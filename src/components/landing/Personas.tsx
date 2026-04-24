@@ -3,45 +3,51 @@ import { motion } from "framer-motion";
 const personas = [
   {
     id: "01",
-    name: "Supply Chain Architect",
+    name: "Chief Operating Officer",
+    abbr: "COO",
     description:
-      "Monitors global logistics around the clock. Predicts delays before they happen and reroutes shipments automatically to protect your margins.",
-    skills: ["Route Optimization", "Vendor Management", "Demand Forecasting"],
+      "Runs day-to-day operations, supply chain, and fulfilment. Predicts delays before they happen and reroutes shipments automatically to protect your margins.",
+    skills: ["Ops Oversight", "Supply Chain", "Vendor Management"],
   },
   {
     id: "02",
-    name: "Sentiment Analyst",
+    name: "Chief Marketing Officer",
+    abbr: "CMO",
     description:
-      "Watches every mention of your brand across social media and review sites. Flags risks early and drafts response strategies for your approval.",
-    skills: ["Brand Monitoring", "Crisis Detection", "Trend Mapping"],
+      "Owns brand, campaigns, and audience growth. Watches every mention across social and review sites, flags risks early, and drafts response strategies.",
+    skills: ["Brand Strategy", "Campaigns", "Sentiment Analysis"],
   },
   {
     id: "03",
-    name: "Revenue Strategist",
+    name: "Chief Financial Officer",
+    abbr: "CFO",
     description:
-      "Analyzes pricing elasticity, competitor moves, and conversion data. Makes micro-adjustments to your storefront to maximize daily revenue.",
-    skills: ["Dynamic Pricing", "Competitor Intel", "Conversion Analysis"],
+      "Tracks P&L, unit economics, and pricing elasticity. Makes micro-adjustments to your storefront and budget to maximise daily revenue and margin.",
+    skills: ["Dynamic Pricing", "Forecasting", "Cash Flow"],
   },
   {
     id: "04",
-    name: "Customer Success Lead",
+    name: "Chief Customer Officer",
+    abbr: "CCO",
     description:
-      "Handles support tickets, identifies upsell opportunities, and maintains customer satisfaction scores—all while you're offline.",
-    skills: ["Ticket Triage", "Upsell Detection", "CSAT Tracking"],
+      "Owns customer experience end-to-end. Identifies upsell opportunities, monitors CSAT, and aligns the team around retention—all while you're offline.",
+    skills: ["Retention", "Upsell Detection", "CSAT Tracking"],
   },
   {
     id: "05",
-    name: "Data Intelligence Officer",
+    name: "Chief Data Officer",
+    abbr: "CDO",
     description:
-      "Connects your tools and transforms raw data into actionable business insights. No BI expertise required—just ask questions in plain English.",
-    skills: ["KPI Dashboards", "Report Generation", "Data Synthesis"],
+      "Connects your tools and transforms raw data into actionable insights. No BI expertise required—just ask questions in plain English.",
+    skills: ["KPI Dashboards", "Reporting", "Data Synthesis"],
   },
   {
     id: "06",
-    name: "Social Media Commander",
+    name: "Chief Growth Officer",
+    abbr: "CGO",
     description:
-      "Schedules, publishes, and optimizes your social content based on audience behavior patterns and engagement analytics.",
-    skills: ["Content Scheduling", "Engagement Analysis", "Audience Growth"],
+      "Schedules, publishes, and optimises content based on audience behaviour. Hunts new acquisition channels and compounding growth loops.",
+    skills: ["Content Engine", "Acquisition", "Audience Growth"],
   },
 ];
 
@@ -51,13 +57,13 @@ export function Personas() {
       <div className="px-6 md:px-8 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-4">
           <div>
-            <div className="text-amber font-mono text-[10px] tracking-widest mb-2">THE_WORKFORCE</div>
+            <div className="text-amber font-mono text-[10px] tracking-widest mb-2">THE_C_SUITE</div>
             <h2 className="text-3xl md:text-4xl font-heading font-medium tracking-tight text-foreground">
-              Your Specialized Team
+              Your Executive Team
             </h2>
           </div>
           <p className="text-steel max-w-[40ch] text-sm text-left md:text-right">
-            Purpose-built AI employees designed to operate within your existing business workflows. No AI expertise needed.
+            You're the CEO. We staff the rest of the C-suite—purpose-built AI executives that operate inside your existing workflows.
           </p>
         </div>
 
@@ -71,8 +77,8 @@ export function Personas() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <div className="size-10 bg-foreground/5 border border-foreground/10 flex items-center justify-center mb-5 font-mono text-amber text-sm rounded-sm">
-                #{persona.id}
+              <div className="size-10 bg-foreground/5 border border-foreground/10 flex items-center justify-center mb-5 font-mono text-amber text-xs rounded-sm">
+                {persona.abbr}
               </div>
               <h3 className="text-lg font-heading font-bold mb-3 text-foreground">{persona.name}</h3>
               <p className="text-sm text-steel leading-relaxed mb-6">{persona.description}</p>
