@@ -1,15 +1,16 @@
+import { BrandMark } from "@/components/brand/BrandMark";
+
 export function Footer() {
   return (
     <footer className="border-t border-edge py-12 px-6 md:px-8">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
         <div>
-          <div className="flex items-center gap-3 mb-3">
-            <div className="size-4 bg-amber" />
-            <span className="font-heading font-bold tracking-tight text-lg text-foreground">ALTOS</span>
+          <div className="mb-3">
+            <BrandMark size="sm" />
           </div>
           <p className="text-xs font-mono text-steel max-w-[40ch]">
             Your AI workforce for modern commerce.<br />
-            © 2026 Altos Systems. All rights reserved.
+            © 2026 Anlic Suite. All rights reserved.
           </p>
         </div>
         <div className="flex gap-8 md:gap-12 font-mono text-[10px] text-steel">
