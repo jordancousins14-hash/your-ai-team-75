@@ -18,7 +18,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Route = createFileRoute("/app")({
   head: () => ({
-    meta: [{ title: "Altos — Command Centre" }],
+    meta: [{ title: "Anlic Suite — Command Centre" }],
   }),
   component: AppLayout,
 });
@@ -73,8 +73,16 @@ function AppLayout() {
         <div className="flex h-14 items-center gap-2 border-b border-border px-4">
           <Zap className="h-5 w-5 shrink-0 text-amber" />
           {expanded && (
-            <span className="font-heading text-sm font-semibold tracking-wide text-foreground">
-              ALTOS
+            <span className="flex items-baseline gap-1 leading-none">
+              <span
+                className="text-base italic font-semibold tracking-tight text-foreground"
+                style={{ fontFamily: "var(--font-serif-display)" }}
+              >
+                Anlic
+              </span>
+              <span className="text-[9px] font-mono uppercase tracking-[0.25em] text-steel">
+                Suite
+              </span>
             </span>
           )}
         </div>
@@ -145,8 +153,16 @@ function AppLayout() {
             {expanded ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
           <Zap className="h-4 w-4 text-amber" />
-          <span className="font-heading text-xs font-semibold tracking-wide text-foreground">
-            ALTOS
+          <span className="flex items-baseline gap-1 leading-none">
+            <span
+              className="text-sm italic font-semibold tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-serif-display)" }}
+            >
+              Anlic
+            </span>
+            <span className="text-[8px] font-mono uppercase tracking-[0.25em] text-steel">
+              Suite
+            </span>
           </span>
         </header>
 

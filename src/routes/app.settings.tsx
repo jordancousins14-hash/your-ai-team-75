@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 
 export const Route = createFileRoute("/app/settings")({
   head: () => ({
-    meta: [{ title: "Settings — Altos" }],
+    meta: [{ title: "Settings — Anlic Suite" }],
   }),
   component: SettingsPage,
 });

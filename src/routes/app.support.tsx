@@ -22,7 +22,7 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/app/support")({
   head: () => ({
-    meta: [{ title: "Customer Support — Altos" }],
+    meta: [{ title: "Customer Support — Anlic Suite" }],
   }),
   component: SupportPage,
 });

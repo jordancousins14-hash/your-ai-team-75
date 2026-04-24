@@ -10,13 +10,13 @@ import { Footer } from "@/components/landing/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Altos — Your AI Workforce for Modern Commerce" },
+      { title: "Anlic Suite — Your AI Workforce for Modern Commerce" },
       {
         name: "description",
         content:
           "Deploy AI employees who manage your supply chain, monitor sentiment, and run operations while you sleep. Built for small businesses and marketplace sellers.",
       },
-      { property: "og:title", content: "Altos — Your AI Workforce for Modern Commerce" },
+      { property: "og:title", content: "Anlic Suite — Your AI Workforce for Modern Commerce" },
       {
         property: "og:description",
         content:
