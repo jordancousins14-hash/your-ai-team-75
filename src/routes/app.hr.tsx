@@ -42,7 +42,7 @@ function HRRoomPage() {
       <div>
         <h1 className="font-heading text-2xl font-bold text-foreground">HR Room</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Your workforce roster. Upload job specs and KPIs to align each persona to your real business roles.
+          You're the CEO. This is your C-suite roster — upload a job spec and KPIs to align each executive to your real business priorities.
         </p>
       </div>
 
