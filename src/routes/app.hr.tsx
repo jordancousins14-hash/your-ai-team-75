@@ -21,14 +21,17 @@ type Persona = {
 };
 
 const personas: Persona[] = [
-  { id: "cos", name: "Morgan", role: "Chief of Staff", specialty: "Strategy & business coaching, cross-functional alignment", tier: "base", unlocked: true, avatar: "CoS", kpiCount: 5 },
-  { id: "logm", name: "Alex", role: "Logistics Manager", specialty: "Supply chain optimisation, fulfilment, shipping costs", tier: "base", unlocked: true, avatar: "LM", kpiCount: 0 },
-  { id: "csa", name: "Jordan", role: "Customer Sentiment Analyst", specialty: "Review analysis, NPS, brand perception", tier: "base", unlocked: true, avatar: "CS", kpiCount: 0 },
-  { id: "smm", name: "Sam", role: "Social Media Monitor", specialty: "Trend detection, hashtag tracking, competitor mentions", tier: "pro", unlocked: false, avatar: "SM", kpiCount: 0 },
-  { id: "bda", name: "Riley", role: "BI & Data Analyst", specialty: "KPI dashboards, cohort analysis, revenue forecasting", tier: "pro", unlocked: false, avatar: "BI", kpiCount: 0 },
-  { id: "ops", name: "Casey", role: "Operations Coordinator", specialty: "Process workflows, SOPs, inventory management", tier: "pro", unlocked: false, avatar: "OC", kpiCount: 0 },
-  { id: "cm", name: "Taylor", role: "Content Manager", specialty: "Product listings, SEO copy, A+ content", tier: "enterprise", unlocked: false, avatar: "CM", kpiCount: 0 },
-  { id: "fm", name: "Avery", role: "Finance Manager", specialty: "P&L, unit economics, cash flow forecasting", tier: "enterprise", unlocked: false, avatar: "FM", kpiCount: 0 },
+  { id: "coo", name: "Morgan", role: "Chief Operating Officer", specialty: "Day-to-day operations, supply chain, fulfilment, vendor management", tier: "base", unlocked: true, avatar: "COO", kpiCount: 5 },
+  { id: "cfo", name: "Avery", role: "Chief Financial Officer", specialty: "P&L, unit economics, pricing, cash flow forecasting", tier: "base", unlocked: true, avatar: "CFO", kpiCount: 0 },
+  { id: "cco", name: "Jordan", role: "Chief Customer Officer", specialty: "Customer experience, retention, NPS, brand perception", tier: "base", unlocked: true, avatar: "CCO", kpiCount: 0 },
+  { id: "cmo", name: "Sam", role: "Chief Marketing Officer", specialty: "Brand, campaigns, social, audience growth", tier: "pro", unlocked: false, avatar: "CMO", kpiCount: 0 },
+  { id: "cdo", name: "Riley", role: "Chief Data Officer", specialty: "KPI dashboards, cohort analysis, revenue forecasting", tier: "pro", unlocked: false, avatar: "CDO", kpiCount: 0 },
+  { id: "ceco", name: "Casey", role: "Chief eCommerce Officer", specialty: "Storefront optimisation, conversion, marketplace ops", tier: "pro", unlocked: false, avatar: "CeCO", kpiCount: 0 },
+  { id: "cgo", name: "Taylor", role: "Chief Growth Officer", specialty: "Acquisition channels, content engine, growth loops", tier: "enterprise", unlocked: false, avatar: "CGO", kpiCount: 0 },
+  { id: "cto", name: "Quinn", role: "Chief Technology Officer", specialty: "Tech stack, integrations, automation architecture", tier: "enterprise", unlocked: false, avatar: "CTO", kpiCount: 0 },
+  { id: "csco", name: "Drew", role: "Chief Supply Chain Officer", specialty: "Inventory, procurement, supplier negotiation, logistics cost", tier: "enterprise", unlocked: false, avatar: "CSCO", kpiCount: 0 },
+  { id: "ciso", name: "Reese", role: "Chief Information Security Officer", specialty: "Account security, fraud detection, data protection", tier: "enterprise", unlocked: false, avatar: "CISO", kpiCount: 0 },
+  { id: "cxo", name: "Sage", role: "Chief Experience Officer", specialty: "End-to-end customer journey, UX, omnichannel cohesion", tier: "enterprise", unlocked: false, avatar: "CXO", kpiCount: 0 },
 ];
 
 function HRRoomPage() {
