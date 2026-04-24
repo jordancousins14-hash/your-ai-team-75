@@ -13,7 +13,7 @@ export const Route = createFileRoute("/app/subscription")({
 const tiers = [
   {
     name: "Starter",
-    price: "£49",
+    price: "$49",
     period: "/month",
     icon: Zap,
     current: true,
@@ -27,7 +27,7 @@ const tiers = [
   },
   {
     name: "Pro",
-    price: "£129",
+    price: "$129",
     period: "/month",
     icon: Crown,
     current: false,
@@ -44,7 +44,7 @@ const tiers = [
   },
   {
     name: "Enterprise",
-    price: "£299",
+    price: "$299",
     period: "/month",
     icon: Rocket,
     current: false,
@@ -67,9 +67,9 @@ const formatVolume = (n: number) =>
   n >= 1000 ? `${(n / 1000).toLocaleString("en-GB")}k` : n.toLocaleString("en-GB");
 
 const invoices = [
-  { id: "INV-001", date: "1 Apr 2026", amount: "£49.00", status: "Paid" },
-  { id: "INV-002", date: "1 Mar 2026", amount: "£49.00", status: "Paid" },
-  { id: "INV-003", date: "1 Feb 2026", amount: "£49.00", status: "Paid" },
+  { id: "INV-001", date: "1 Apr 2026", amount: "$49.00", status: "Paid" },
+  { id: "INV-002", date: "1 Mar 2026", amount: "$49.00", status: "Paid" },
+  { id: "INV-003", date: "1 Feb 2026", amount: "$49.00", status: "Paid" },
 ];
 
 function SubscriptionPage() {
@@ -214,7 +214,7 @@ function SubscriptionPage() {
             <div>
               <p className="text-sm font-semibold text-foreground">Volume Bundle</p>
               <p className="text-xs text-muted-foreground mt-1">
-                +{formatVolume(BUNDLE_SIZE)} AI actions for £{BUNDLE_PRICE}/mo. Stack as many as you need.
+                +{formatVolume(BUNDLE_SIZE)} AI actions for ${BUNDLE_PRICE}/mo. Stack as many as you need.
               </p>
             </div>
           </div>
@@ -236,7 +236,7 @@ function SubscriptionPage() {
               +
             </button>
             <span className="ml-3 text-sm font-semibold text-foreground whitespace-nowrap">
-              +£{bundles * BUNDLE_PRICE}/mo
+              +${bundles * BUNDLE_PRICE}/mo
             </span>
           </div>
         </div>
@@ -262,7 +262,7 @@ function SubscriptionPage() {
               AI agent that reads tickets and drafts on-brand replies grounded in your FAQs and policies. You stay in control of every send.
             </p>
             <div className="mt-4">
-              <span className="text-2xl font-bold text-foreground">£39</span>
+              <span className="text-2xl font-bold text-foreground">$39</span>
               <span className="text-sm text-muted-foreground">/month</span>
             </div>
             <Link
@@ -285,7 +285,7 @@ function SubscriptionPage() {
               address changes, cancellations and reshipments — within limits you set.
             </p>
             <div className="mt-4">
-              <span className="text-2xl font-bold text-foreground">+£10</span>
+              <span className="text-2xl font-bold text-foreground">+$10</span>
               <span className="text-sm text-muted-foreground">/month</span>
               <p className="text-[11px] text-muted-foreground mt-1">Requires Customer Support I.</p>
             </div>
