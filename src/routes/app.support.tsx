@@ -241,7 +241,7 @@ function SupportPage() {
               {supportIIUnlocked ? (
                 <Badge className="ml-auto bg-emerald-400/15 text-emerald-400 border-0 text-[10px]">Unlocked</Badge>
               ) : (
-                <Badge className="ml-auto bg-muted text-muted-foreground border-0 text-[10px]">+ £49/mo</Badge>
+                <Badge className="ml-auto bg-muted text-muted-foreground border-0 text-[10px]">+ $10/mo</Badge>
               )}
             </div>
             <p className="text-xs text-muted-foreground mt-2">
@@ -351,7 +351,7 @@ function SupportPage() {
                 disabled={!supportIIUnlocked}
                 className="flex-1 accent-emerald-400 disabled:opacity-50"
               />
-              <span className="text-sm font-mono text-foreground w-20 text-right">£{refundCap}</span>
+              <span className="text-sm font-mono text-foreground w-20 text-right">${refundCap}</span>
             </div>
             <p className="text-[11px] text-muted-foreground mt-2">
               Refunds above this amount are always sent to you for approval, regardless of tier.
@@ -364,7 +364,7 @@ function SupportPage() {
               className="inline-flex items-center gap-1.5 mt-4 text-xs font-medium text-emerald-400 hover:text-emerald-400/80"
             >
               <Sparkles className="h-3.5 w-3.5" />
-              Upgrade to Support II — £49/mo
+              Upgrade to Support II — +$10/mo
             </Link>
           )}
         </div>
@@ -500,7 +500,7 @@ function LockedState() {
           className="inline-flex items-center justify-center gap-2 mt-6 bg-amber text-background hover:bg-amber/90 text-sm font-medium px-5 py-2.5 rounded-md"
         >
           <Sparkles className="h-4 w-4" />
-          Add to my plan — £39/mo
+          Add to my plan — $39/mo
         </Link>
       </div>
     </div>
