@@ -18,7 +18,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Route = createFileRoute("/app")({
   head: () => ({
-    meta: [{ title: "Altos — Command Centre" }],
+    meta: [{ title: "Anlic Suite — Command Centre" }],
   }),
   component: AppLayout,
 });

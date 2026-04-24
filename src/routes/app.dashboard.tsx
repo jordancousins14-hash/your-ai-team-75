@@ -10,7 +10,7 @@ import {
 
 export const Route = createFileRoute("/app/dashboard")({
   head: () => ({
-    meta: [{ title: "Dashboard — Altos" }],
+    meta: [{ title: "Dashboard — Anlic Suite" }],
   }),
   component: DashboardPage,
 });

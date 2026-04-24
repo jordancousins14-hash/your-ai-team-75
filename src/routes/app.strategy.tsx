@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/app/strategy")({
   head: () => ({
-    meta: [{ title: "Strategy Room — Altos" }],
+    meta: [{ title: "Strategy Room — Anlic Suite" }],
   }),
   component: StrategyPage,
 });
