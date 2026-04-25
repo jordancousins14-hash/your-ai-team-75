@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { LocaleSwitcher } from "@/components/i18n/LocaleSwitcher";
 
 export const Route = createFileRoute("/app")({
   head: () => ({
@@ -164,6 +165,9 @@ function AppLayout() {
               Suite
             </span>
           </span>
+          <div className="ml-auto">
+            <LocaleSwitcher variant="compact" />
+          </div>
         </header>
 
         <div className="flex-1 min-w-0">
