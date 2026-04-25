@@ -15,7 +15,7 @@ export function Header() {
       </div>
       <div className="flex items-center gap-3">
         <LocaleSwitcher variant="landing" />
-        <Link to="/app/dashboard" className="px-4 py-2 border border-amber text-amber text-xs font-mono uppercase hover:bg-amber hover:text-panel transition-all rounded-sm">
+        <Link to="/signup" className="px-4 py-2 border border-amber text-amber text-xs font-mono uppercase hover:bg-amber hover:text-panel transition-all rounded-sm">
           {t("nav.getStarted")}
         </Link>
       </div>
