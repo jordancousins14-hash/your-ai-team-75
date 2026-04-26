@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/app/subscription")({
   head: () => ({
-    meta: [{ title: "Subscription — Anlic Suite" }],
+    meta: [{ title: "Subscription — Idon Suite" }],
   }),
   component: SubscriptionPage,
 });

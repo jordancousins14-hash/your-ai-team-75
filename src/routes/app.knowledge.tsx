@@ -12,7 +12,7 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/app/knowledge")({
   head: () => ({
-    meta: [{ title: "Anlic Suite — Knowledge Repository" }],
+    meta: [{ title: "Idon Suite — Knowledge Repository" }],
   }),
   component: KnowledgePage,
 });

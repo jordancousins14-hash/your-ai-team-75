@@ -32,9 +32,9 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Anlic Suite — AI Workforce" },
+      { title: "Idon Suite — AI Workforce" },
       { name: "description", content: "Your AI workforce for modern commerce." },
-      { name: "author", content: "Anlic Suite" },
+      { name: "author", content: "Idon Suite" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

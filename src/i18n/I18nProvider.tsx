@@ -18,8 +18,8 @@ type I18nContextValue = {
   tDynamic: (text: string) => string;
 };
 
-const STORAGE_LOCALE = "anlic.locale";
-const STORAGE_TZ = "anlic.timezone";
+const STORAGE_LOCALE = "idon.locale";
+const STORAGE_TZ = "idon.timezone";
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 

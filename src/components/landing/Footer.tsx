@@ -10,7 +10,7 @@ export function Footer() {
           </div>
           <p className="text-xs font-mono text-steel max-w-[40ch]">
             Your AI workforce for modern commerce.<br />
-            © 2026 Anlic Suite. All rights reserved.
+            © 2026 Idon Suite. All rights reserved.
           </p>
         </div>
         <div className="flex gap-8 md:gap-12 font-mono text-[10px] text-steel">

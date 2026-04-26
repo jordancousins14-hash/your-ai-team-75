@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/app/forums")({
   head: () => ({
-    meta: [{ title: "Forums — Anlic Suite" }],
+    meta: [{ title: "Forums — Idon Suite" }],
   }),
   component: ForumsPage,
 });
