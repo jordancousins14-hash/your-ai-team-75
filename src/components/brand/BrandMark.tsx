@@ -20,7 +20,7 @@ export function BrandMark({ size = "md", showDot = true, className = "" }: Brand
           className={`${s.anlic} font-serif italic font-semibold tracking-tight text-foreground`}
           style={{ fontFamily: "var(--font-serif-display)" }}
         >
-          Anlic
+          Idon
         </span>
         <span
           className={`${s.suite} font-mono uppercase tracking-[0.25em] text-steel`}
