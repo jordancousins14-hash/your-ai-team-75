@@ -13,13 +13,13 @@ import {
 export const Route = createFileRoute("/signup")({
   head: () => ({
     meta: [
-      { title: "Start your trial — Anlic Suite" },
+      { title: "Start your trial — Idon Suite" },
       {
         name: "description",
         content:
           "Spin up your AI C-suite in minutes. One trial per company — work email and company domain required.",
       },
-      { property: "og:title", content: "Start your trial — Anlic Suite" },
+      { property: "og:title", content: "Start your trial — Idon Suite" },
       {
         property: "og:description",
         content:

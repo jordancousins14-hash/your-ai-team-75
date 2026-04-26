@@ -22,9 +22,9 @@ import {
   normalizeCompanyName,
 } from "./utils";
 
-const ACCOUNTS_KEY = "anlic.trial.accounts";
-const PROFILES_KEY = "anlic.trial.profiles";
-const CURRENT_KEY = "anlic.trial.currentAccountId";
+const ACCOUNTS_KEY = "idon.trial.accounts";
+const PROFILES_KEY = "idon.trial.profiles";
+const CURRENT_KEY = "idon.trial.currentAccountId";
 
 function readJson<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;

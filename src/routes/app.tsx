@@ -19,7 +19,7 @@ import { LocaleSwitcher } from "@/components/i18n/LocaleSwitcher";
 
 export const Route = createFileRoute("/app")({
   head: () => ({
-    meta: [{ title: "Anlic Suite — Command Centre" }],
+    meta: [{ title: "Idon Suite — Command Centre" }],
   }),
   component: AppLayout,
 });
@@ -79,7 +79,7 @@ function AppLayout() {
                 className="text-base italic font-semibold tracking-tight text-foreground"
                 style={{ fontFamily: "var(--font-serif-display)" }}
               >
-                Anlic
+                Idon
               </span>
               <span className="text-[9px] font-mono uppercase tracking-[0.25em] text-steel">
                 Suite
@@ -159,7 +159,7 @@ function AppLayout() {
               className="text-sm italic font-semibold tracking-tight text-foreground"
               style={{ fontFamily: "var(--font-serif-display)" }}
             >
-              Anlic
+              Idon
             </span>
             <span className="text-[8px] font-mono uppercase tracking-[0.25em] text-steel">
               Suite

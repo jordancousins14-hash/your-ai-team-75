@@ -18,7 +18,7 @@ import { TIMEZONES, formatInTimezone } from "@/i18n/timezones";
 
 export const Route = createFileRoute("/app/settings")({
   head: () => ({
-    meta: [{ title: "Settings — Anlic Suite" }],
+    meta: [{ title: "Settings — Idon Suite" }],
   }),
   component: SettingsPage,
 });

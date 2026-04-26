@@ -17,13 +17,13 @@ import { trialService, type BusinessProfile, type TrialAccount } from "@/service
 export const Route = createFileRoute("/onboarding")({
   head: () => ({
     meta: [
-      { title: "Brief your Chief of Staff — Anlic Suite" },
+      { title: "Brief your Chief of Staff — Idon Suite" },
       {
         name: "description",
         content:
           "A 5-minute briefing so your AI C-suite knows your business, channels, and goals from day one.",
       },
-      { property: "og:title", content: "Brief your Chief of Staff — Anlic Suite" },
+      { property: "og:title", content: "Brief your Chief of Staff — Idon Suite" },
       {
         property: "og:description",
         content:

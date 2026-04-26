@@ -15,7 +15,7 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/app/tools")({
   head: () => ({
-    meta: [{ title: "Anlic Suite — Tools & Integrations" }],
+    meta: [{ title: "Idon Suite — Tools & Integrations" }],
   }),
   component: ToolsPage,
 });

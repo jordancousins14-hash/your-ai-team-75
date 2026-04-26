@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export const Route = createFileRoute("/app/hr")({
   head: () => ({
-    meta: [{ title: "HR Room — Anlic Suite" }],
+    meta: [{ title: "HR Room — Idon Suite" }],
   }),
   component: HRRoomPage,
 });
