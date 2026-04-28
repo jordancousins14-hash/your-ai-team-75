@@ -1,22 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Headphones,
-  Mail,
-  MessageCircle,
-  Phone,
-  MessagesSquare,
-  Plug,
-  BookOpen,
-  AlertTriangle,
-  Check,
-  Sparkles,
-  Lock,
-  Zap,
-  ShieldCheck,
-  RefreshCw,
-  Truck,
-  Wand2,
-} from "lucide-react";
+import { Headphones, Mail, MessageCircle, Phone, MessagesSquare, BookOpen, TriangleAlert as AlertTriangle, Check, Sparkles, Lock, Zap, ShieldCheck, RefreshCw, Truck, Wand as Wand2 } from "lucide-react";
+import { IntegrationLogo } from "@/components/integrations/IntegrationLogo";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 
@@ -38,12 +22,12 @@ const channels = [
 ];
 
 const integrations = [
-  { name: "Gorgias", connected: true },
-  { name: "Zendesk", connected: false },
-  { name: "Intercom", connected: false },
-  { name: "Front", connected: false },
-  { name: "Freshdesk", connected: false },
-  { name: "HelpScout", connected: false },
+  { name: "Gorgias",   slug: "gorgias",   connected: true },
+  { name: "Zendesk",   slug: "zendesk",   connected: false },
+  { name: "Intercom",  slug: "intercom",  connected: false },
+  { name: "Front",     slug: "front",     connected: false },
+  { name: "Freshdesk", slug: "freshdesk", connected: false },
+  { name: "HelpScout", slug: "helpscout", connected: false },
 ];
 
 const tones = ["Warm & friendly", "Professional", "Playful", "Concise", "Custom"];
@@ -185,7 +169,9 @@ function SupportPage() {
               key={i.name}
               className="rounded-lg border border-border bg-card p-3 flex items-center gap-3"
             >
-              <Plug className={`h-4 w-4 ${i.connected ? "text-emerald-400" : "text-muted-foreground"}`} />
+              <div className={`h-7 w-7 flex items-center justify-center rounded-sm p-1 ${i.connected ? "bg-emerald-400/10" : "bg-muted/50"}`}>
+                <IntegrationLogo slug={i.slug} name={i.name} size={18} />
+              </div>
               <span className="text-sm text-foreground">{i.name}</span>
               <button
                 className={`ml-auto text-xs font-medium px-2.5 py-1 rounded-md transition-colors ${

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, Plus, Loader2, ExternalLink, ShieldCheck, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { IntegrationLogo } from "@/components/integrations/IntegrationLogo";
 
 export const Route = createFileRoute("/app/tools")({
   head: () => ({
@@ -55,30 +56,6 @@ const categories = [
 ] as const;
 
 const STORAGE_KEY = "idon.integrations.connected";
-
-/**
- * Brand logo from Simple Icons CDN. Renders the official SVG glyph
- * tinted to the provider's brand colour. No bundling required.
- */
-function BrandLogo({ slug, color, name }: { slug: string; color: string; name: string }) {
-  return (
-    <img
-      src={`https://cdn.simpleicons.org/${slug}/${color}`}
-      alt={`${name} logo`}
-      width={28}
-      height={28}
-      loading="lazy"
-      className="h-7 w-7 object-contain"
-      onError={(e) => {
-        // Fallback to monogram if Simple Icons doesn't have this slug
-        const target = e.currentTarget as HTMLImageElement;
-        target.style.display = "none";
-        const sib = target.nextElementSibling as HTMLElement | null;
-        if (sib) sib.style.display = "flex";
-      }}
-    />
-  );
-}
 
 type ConnectionState = "idle" | "authorising" | "exchanging" | "connected" | "error";
 
@@ -187,15 +164,8 @@ function ToolsPage() {
               className="rounded-lg border border-border bg-card p-4 flex flex-col gap-3"
             >
               <div className="flex items-start gap-3">
-                <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-background/50 border border-border p-2">
-                  <BrandLogo slug={tool.logoSlug} color={tool.brandColor} name={tool.name} />
-                  {/* Fallback monogram (hidden unless logo fails to load) */}
-                  <span
-                    className="absolute inset-0 hidden items-center justify-center rounded-md text-xs font-bold text-amber"
-                    aria-hidden
-                  >
-                    {tool.name.charAt(0)}
-                  </span>
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-background/50 border border-border p-2">
+                  <IntegrationLogo slug={tool.logoSlug} color={tool.brandColor} name={tool.name} size={28} />
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-start justify-between gap-2">
@@ -270,7 +240,7 @@ function OAuthDialog({
         <div className="flex items-start justify-between border-b border-border p-4">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-md bg-background/60 border border-border p-1.5">
-              <BrandLogo slug={tool.logoSlug} color={tool.brandColor} name={tool.name} />
+              <IntegrationLogo slug={tool.logoSlug} color={tool.brandColor} name={tool.name} size={24} />
             </div>
             <div>
               <h2 className="text-sm font-semibold text-foreground">Connect {tool.name}</h2>
